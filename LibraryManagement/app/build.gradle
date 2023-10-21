@@ -20,7 +20,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
+        debug{
+            buildConfigField "String", "BASE_URL", '"https://api.example.com/"'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -36,6 +43,7 @@ android {
     viewBinding {
         enabled = true
     }
+
 }
 
 dependencies {
@@ -72,4 +80,9 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.4.0-alpha10"
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
 }

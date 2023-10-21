@@ -1,4 +1,4 @@
-package com.example.librarymanagement.ui
+package com.example.librarymanagement.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

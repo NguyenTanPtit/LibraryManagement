@@ -12,4 +12,7 @@ import lombok.*;
 public class Book {
     @Id
     private int id;
+
+    private String title;
+
 }

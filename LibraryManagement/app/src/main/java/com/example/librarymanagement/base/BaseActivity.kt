@@ -13,4 +13,5 @@ open class BaseActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
     }
 
+    //method show alert screen
 }

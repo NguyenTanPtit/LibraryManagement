@@ -7,6 +7,7 @@ import lombok.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Getter
 @Setter
 public class Book {
@@ -14,5 +15,10 @@ public class Book {
     private int id;
 
     private String title;
+
+    private String author;
+    private String pageNumber;
+    private String price;
+    private String category;
 
 }

@@ -9,7 +9,7 @@ data class LoginResponse(
     @SerializedName("data")
     val user: User?,
     @SerializedName("httpStatus")
-    val status: Int?,
+    val status: String?,
     val error:String?
 ) {
 }

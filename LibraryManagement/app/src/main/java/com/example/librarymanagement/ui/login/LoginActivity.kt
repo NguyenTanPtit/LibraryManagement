@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import com.example.librarymanagement.base.BaseActivity
 import com.example.librarymanagement.base.Resource
 import com.example.librarymanagement.databinding.ActivityLoginBinding
+import com.example.librarymanagement.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,11 +19,11 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val username = binding.username.text.toString()
-        val password = binding.edtPassword.text.toString()
+
 
         binding.btnLogin.setOnClickListener{
-
+            val username = binding.username.text.toString()
+            val password = binding.edtPassword.text.toString()
             viewModel.login(username,password)
 
         }
@@ -33,14 +34,18 @@ class LoginActivity : BaseActivity() {
                 is Resource.Loading -> showLoading()
 
                 is Resource.Success -> {
+                    hideLoading()
                     if(it.data?.errorMsg!=null){
-                        showAlert()
+                        showAlert("Login Failed")
                     }else{
-                        gotoActivity()
+                        start(MainActivity::class.java)
                     }
                 }
 
-                is Resource.Error -> showAlert()
+                is Resource.Error -> {
+                    hideLoading()
+                    showAlert("Login Failed")
+                }
             }
         }
     }

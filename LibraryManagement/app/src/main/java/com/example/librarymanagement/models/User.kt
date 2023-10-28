@@ -14,6 +14,6 @@ open class User(
     val email: String,
     val phoneNumber: String,
     val dateOfBirth: String,
-    val role: Int
+    val role: String
 )
 

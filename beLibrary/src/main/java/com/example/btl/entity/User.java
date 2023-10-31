@@ -16,12 +16,13 @@ public class User {
     private Integer id;
     @Column(unique = true)
     private String username;
+    private String avatar;
     private String password;
     private String fullName;
     @Column(unique = true)
     private String email;
     private String phoneNumber;
-    private String Address;
+    private String address;
     private String dateOfBirth;
     @Enumerated(EnumType.STRING)
     private ERole role;

@@ -1,9 +1,12 @@
-package com.example.librarymanagement.data.remote.common
+package com.example.librarymanagement.data
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Build
+import android.preference.PreferenceManager
 import androidx.annotation.RequiresApi
 import com.example.librarymanagement.BuildConfig
+import com.example.librarymanagement.data.remote.common.ApiHttpClient
 import com.example.librarymanagement.data.remote.login.LoginService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -86,4 +89,10 @@ object AppModule {
     @Provides
     fun provideLoginService(retrofit: Retrofit): LoginService =
         retrofit.create(LoginService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+    }
 }

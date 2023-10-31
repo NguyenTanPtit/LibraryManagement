@@ -3,6 +3,9 @@ package com.example.librarymanagement.base
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Layout
 import android.util.AttributeSet
@@ -10,55 +13,82 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDialog
+import androidx.appcompat.widget.ContentFrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewbinding.ViewBinding
 import com.example.librarymanagement.R
 import com.example.librarymanagement.databinding.LayoutAlertBinding
+import com.example.librarymanagement.databinding.LayoutLoadingBinding
 
 abstract  class BaseActivity:AppCompatActivity() , IBaseView{
-    private var loadingDialog: AppCompatDialog? = null
+    private var loadingView: View? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setupLoadingView()
     }
 
+    private fun setupLoadingView() {
+        val inflater = LayoutInflater.from(this)
+        loadingView = inflater.inflate(R.layout.layout_loading, null)
+        val bgColor: Int = Color.TRANSPARENT
+        val background: Drawable = ColorDrawable(bgColor)
+        loadingView?.background = background
+
+        val progressBar = loadingView?.findViewById<ProgressBar>(R.id.progressBar)
+        val params = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.WRAP_CONTENT,
+            RelativeLayout.LayoutParams.WRAP_CONTENT
+        )
+        params.addRule(RelativeLayout.CENTER_IN_PARENT)
+        progressBar?.layoutParams = params
+    }
 
 
 
     //write method show loading
     @SuppressLint("ResourceType")
     protected fun showLoading(){
-        //write method show loading with progress bar and blur background
-        if (findViewById<View>(R.layout.layout_loading) != null) {
+        if(findViewById<View>(R.layout.layout_loading) != null){
             findViewById<View>(R.layout.layout_loading).visibility = View.VISIBLE
-        }else{
-            // create dialog loading
-            val view = layoutInflater.inflate(R.layout.layout_loading, null)
-            val builder = android.app.AlertDialog.Builder(this)
-            builder.setView(view)
-            val dialog = builder.create()
-            dialog.show()
+        }else {
+            loadingView?.let {
+                if (it.parent == null) {
+                    val rootView = findViewById<View>(android.R.id.content)
+                    (rootView as ContentFrameLayout).addView(it)
+                }
+            }
         }
     }
 
+    @SuppressLint("ResourceType")
     override fun showLoading(text: String?, isDialog: Boolean?) {
-//        TODO("Not yet implemented")
+        if(findViewById<View>(R.layout.layout_loading) != null){
+            findViewById<View>(R.layout.layout_loading).visibility = View.VISIBLE
+        }else{
+            loadingView?.let {
+                if (it.parent == null) {
+                    val rootView = findViewById<View>(android.R.id.content)
+                    (rootView as ContentFrameLayout).addView(it)
+                }
+            }
+        }
     }
 
     //write method hide loading
     @SuppressLint("ResourceType")
     override fun hideLoading() {
-        val frameLoading = this.findViewById<View>(R.layout.layout_loading)
-        if (frameLoading != null) {
-            frameLoading.visibility = View.GONE
-            if (loadingDialog != null){
-                loadingDialog?.dismiss()
-                loadingDialog = null
+        if(findViewById<View>(R.layout.layout_loading) != null) {
+            findViewById<View>(R.layout.layout_loading).visibility = View.GONE
+        }else {
+            loadingView?.let {
+                val rootView = findViewById<View>(android.R.id.content)
+                (rootView as ContentFrameLayout).removeView(it)
             }
-        } else {
-            loadingDialog?.dismiss()
-            loadingDialog = null
         }
 
     }
@@ -90,6 +120,7 @@ abstract  class BaseActivity:AppCompatActivity() , IBaseView{
             val dialog = builder.create()
             view.btnCloseAlert.setOnClickListener {
                 dialog.dismiss()
+                hideLoading()
             }
             dialog.show()
         }

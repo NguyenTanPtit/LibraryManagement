@@ -35,9 +35,16 @@ class LoginActivity : BaseActivity() {
 
                 is Resource.Success -> {
                     hideLoading()
-                    if(it.data?.errorMsg!=null){
+                    if(it.data?.user==null){
                         showAlert("Login Failed")
                     }else{
+                        if (binding.checkRemember.isChecked) {
+                            //save username and password to shared preference
+                            viewModel.saveLoginData(binding.username.text.toString(), binding.edtPassword.text.toString(), true)
+                        } else {
+                            //clear shared preference
+                            viewModel.saveLoginData("", "", false)
+                        }
                         start(MainActivity::class.java)
                     }
                 }
@@ -48,5 +55,6 @@ class LoginActivity : BaseActivity() {
                 }
             }
         }
+
     }
 }

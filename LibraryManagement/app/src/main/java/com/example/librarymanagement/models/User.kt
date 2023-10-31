@@ -8,6 +8,7 @@ open class User(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val userName: String,
+    val avatar: String,
     val password: String,
     var fullName: String,
     var address: String,

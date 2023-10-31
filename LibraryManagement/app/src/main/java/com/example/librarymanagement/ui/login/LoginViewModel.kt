@@ -31,4 +31,9 @@ class LoginViewModel @Inject constructor (private val repo: LoginRepository):Vie
        }
 
     }
+
+    // implement save login data function
+    fun saveLoginData(username: String, password: String, rememberMe: Boolean) {
+        repo.saveLoginData(username, password, rememberMe)
+    }
 }

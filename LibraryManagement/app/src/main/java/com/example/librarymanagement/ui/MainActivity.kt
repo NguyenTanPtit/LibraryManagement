@@ -11,7 +11,9 @@ import com.example.librarymanagement.ui.general.function.FunctionFragment
 import com.example.librarymanagement.ui.general.home.HomeFragment
 import com.example.librarymanagement.ui.general.menu.MenuFragment
 import com.example.librarymanagement.ui.general.notification.NotificationFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {

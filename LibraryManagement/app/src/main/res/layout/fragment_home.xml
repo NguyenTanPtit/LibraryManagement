@@ -45,14 +45,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/buttonAddCategory"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_marginStart="5dp"
+        android:layout_gravity="center"
+        android:src="@drawable/icons8_add_36___"
+        android:layout_marginTop="20dp"
+        android:visibility="visible"
+        android:background="@drawable/bg_stroke"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home_category"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="16dp"
+        android:paddingTop="16dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddCategory"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <androidx.recyclerview.widget.RecyclerView

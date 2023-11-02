@@ -24,10 +24,10 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(request.getPassword())
                 .fullName(request.getFullName())
-                .Address(request.getAddress())
+                .address(request.getAddress())
                 .dateOfBirth(request.getDateOfBirth())
                 .phoneNumber(request.getPhoneNumber())
-                .role(ERole.EMPLOYEE)
+                .role(ERole.STUDENT)
                 .build();
         var savedUser = userRepository.save(user);
         return AuthenticationResponse.builder()

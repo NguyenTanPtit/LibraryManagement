@@ -1,13 +1,7 @@
 package com.example.librarymanagement.data.repository
 
-import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
-import com.example.librarymanagement.data.remote.LoginDataSource
-import com.example.librarymanagement.models.User
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
+import com.example.librarymanagement.data.remote.dataSource.LoginDataSource
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(val dataSource: LoginDataSource,

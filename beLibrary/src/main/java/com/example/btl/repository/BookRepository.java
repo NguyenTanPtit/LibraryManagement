@@ -5,13 +5,14 @@ import com.example.btl.entity.User;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
-@Repository
-public interface BookRepository extends JpaRepository<Book, Integer>, JpaSpecificationExecutor<Book> {
-    @Override
-    List<Book> findAll();
 
-
+public interface BookRepository extends JpaRepository<Book, Integer> {
+    @Query(value = "select * from book where category_id = :id", nativeQuery = true)
+    List<Book> getAllByCategories_Id(@Param("id") Long id);
+    @Query(value = "select * from book where author_id = :id", nativeQuery = true)
+    List<Book> getAllByAuthorId(Long id);
 }

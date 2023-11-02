@@ -1,5 +1,7 @@
 package com.example.btl.payload.request;
 
+import com.example.btl.entity.Author;
+import com.example.btl.entity.Categories;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,10 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateBookRequest {
     private String title;
-    private String author;
+    private Author author;
     private String pageNumber;
     private String price;
-    private String category;
-
-
+    private Categories category;
 }

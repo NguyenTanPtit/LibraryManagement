@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.librarymanagement.base.BaseActivity
 import com.example.librarymanagement.base.Resource
+import com.example.librarymanagement.data.local.user.UserManager
 import com.example.librarymanagement.databinding.ActivityLoginBinding
 import com.example.librarymanagement.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +39,7 @@ class LoginActivity : BaseActivity() {
                     if(it.data?.user==null){
                         showAlert("Login Failed")
                     }else{
+                        UserManager.user = it.data.user
                         if (binding.checkRemember.isChecked) {
                             //save username and password to shared preference
                             viewModel.saveLoginData(binding.username.text.toString(), binding.edtPassword.text.toString(), true)

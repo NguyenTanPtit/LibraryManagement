@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.librarymanagement.base.Resource
 import com.example.librarymanagement.base.onResult
 import com.example.librarymanagement.data.repository.HomeRepository
+import com.example.librarymanagement.models.AuthorResponse
+import com.example.librarymanagement.models.BookResponse
 import com.example.librarymanagement.models.CategoriesResponse
 import com.example.librarymanagement.models.GetBookResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,6 +28,14 @@ class HomeViewModel @Inject constructor(val repo: HomeRepository):ViewModel(){
     private var _addCategory= MutableLiveData<Resource<CategoriesResponse?>>()
     val addCategory: MutableLiveData<Resource<CategoriesResponse?>>
         get() = _addCategory
+
+    private var _listAuthors= MutableLiveData<Resource<AuthorResponse?>>()
+    val listAuthors: MutableLiveData<Resource<AuthorResponse?>>
+        get() = _listAuthors
+
+    private var _listBooks= MutableLiveData<Resource<BookResponse?>>()
+    val listBooks: MutableLiveData<Resource<BookResponse?>>
+        get() = _listBooks
     fun getCategories() {
         _listCategories.value = Resource.Loading()
         viewModelScope.launch {
@@ -62,6 +72,34 @@ class HomeViewModel @Inject constructor(val repo: HomeRepository):ViewModel(){
                     _addCategory.value = Resource.Success(it)
                 },{
                     _addCategory.value = Resource.Error(it)
+                }
+            )
+        }
+
+    }
+
+    fun getAuthors() {
+        _listAuthors.value = Resource.Loading()
+        viewModelScope.launch {
+            repo.getAuthors().onResult(
+                {
+                    _listAuthors.value = Resource.Success(it)
+                },{
+                    _listAuthors.value = Resource.Error(it)
+                }
+            )
+        }
+
+    }
+
+    fun getBooks() {
+        _listBooks.value = Resource.Loading()
+        viewModelScope.launch {
+            repo.getBooks().onResult(
+                {
+                    _listBooks.value = Resource.Success(it)
+                },{
+                    _listBooks.value = Resource.Error(it)
                 }
             )
         }

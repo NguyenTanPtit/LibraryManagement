@@ -1,7 +1,7 @@
 package com.example.librarymanagement.data.remote.dataSource
 
 import com.example.librarymanagement.base.BaseDataSource
-import com.example.librarymanagement.data.remote.categories.CategoriesService
+import com.example.librarymanagement.data.remote.book.service.CategoriesService
 import javax.inject.Inject
 
 class CategoriesDataSource @Inject constructor(val service: CategoriesService): BaseDataSource(){

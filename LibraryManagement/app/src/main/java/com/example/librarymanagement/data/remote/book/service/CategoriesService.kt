@@ -1,4 +1,4 @@
-package com.example.librarymanagement.data.remote.categories
+package com.example.librarymanagement.data.remote.book.service
 
 import com.example.librarymanagement.data.remote.ApiPath
 import com.example.librarymanagement.models.CategoriesResponse
@@ -25,4 +25,6 @@ interface CategoriesService {
     suspend fun addCategory(
         @Field("name") name: String
     ): Response<CategoriesResponse>
+
+
 }

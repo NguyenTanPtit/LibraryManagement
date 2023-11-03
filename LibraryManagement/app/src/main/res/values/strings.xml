@@ -9,4 +9,9 @@
     <string name="search">Search</string>
     <string name="category">Category</string>
     <string name="add_btn">Add</string>
+    <string name="title_edit">Edit</string>
+    <string name="title_delete">Delete</string>
+    <string name="author">Author</string>
+    <string name="recent_book">Recent Book</string>
+    <string name="delete">Delete</string>
 </resources>

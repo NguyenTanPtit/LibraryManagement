@@ -6,7 +6,9 @@ import android.os.Build
 import android.preference.PreferenceManager
 import androidx.annotation.RequiresApi
 import com.example.librarymanagement.BuildConfig
-import com.example.librarymanagement.data.remote.categories.CategoriesService
+import com.example.librarymanagement.data.remote.book.service.AuthorService
+import com.example.librarymanagement.data.remote.book.service.BookService
+import com.example.librarymanagement.data.remote.book.service.CategoriesService
 import com.example.librarymanagement.data.remote.common.ApiHttpClient
 import com.example.librarymanagement.data.remote.login.LoginService
 import com.google.gson.Gson
@@ -100,4 +102,12 @@ object AppModule {
     @Provides
     fun provideCategoriesService(retrofit: Retrofit): CategoriesService =
         retrofit.create(CategoriesService::class.java)
+
+    @Provides
+    fun provideAuthorsService(retrofit: Retrofit): AuthorService =
+        retrofit.create(AuthorService::class.java)
+
+    @Provides
+    fun provideBookService(retrofit: Retrofit): BookService =
+        retrofit.create(BookService::class.java)
 }

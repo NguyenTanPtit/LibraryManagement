@@ -7,12 +7,12 @@ import com.example.btl.entity.Categories;
 import com.example.btl.payload.mapper.BookMapper;
 import com.example.btl.payload.request.CreateBookRequest;
 import com.example.btl.payload.response.CreateBookResponse;
+import com.example.btl.payload.response.EntityResponse;
 import com.example.btl.payload.response.GetBookResponse;
 import com.example.btl.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
@@ -52,10 +52,47 @@ import java.util.List;
             list.forEach(item -> listBookDto.add(BookMapper.Mapper.mapToDto(item)));
             GetBookResponse getBookResponse = GetBookResponse.builder()
                     .message("thanh cong")
-                    .data(listBookDto)
+                    .data(list)
                     .build();
             return new ResponseEntity<>(getBookResponse, HttpStatusCode.valueOf(200));
 //            return service.getAllByCategory(id);
         }
+
+        @PostMapping("/getAll")
+        public EntityResponse getAll() {
+            try {
+                List<Book> list = service.getAllBooks();
+                List<BookDto> listBookDto = new LinkedList<>();
+                list.forEach(item -> listBookDto.add(BookMapper.Mapper.mapToDto(item)));
+                return   EntityResponse.builder()
+                        .message(null)
+                        .data(listBookDto)
+                        .build();
+            }catch (Exception e){
+                return EntityResponse.builder()
+                        .message("Some thing wrong! Please try again later!")
+                        .data(null)
+                        .build();
+            }
+        }
+
+        @PostMapping("/deleteById")
+        public EntityResponse deleteById(
+                @RequestParam Integer id
+        ) {
+            try {
+                service.deleteById(id);
+                return EntityResponse.builder()
+                        .message("Delete success!")
+                        .data(null)
+                        .build();
+            }catch (Exception e){
+                return EntityResponse.builder()
+                        .message("Some thing wrong! Please try again later!")
+                        .data(null)
+                        .build();
+            }
+        }
+
     }
 

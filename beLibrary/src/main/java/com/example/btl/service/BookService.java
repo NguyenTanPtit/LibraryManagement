@@ -52,4 +52,12 @@ public class BookService {
         List<Book> data = bookRepository.getAllByAuthorId(id);
         return data;
     }
+
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    public void deleteById(Integer id) {
+        bookRepository.deleteById(id);
+    }
 }

@@ -30,6 +30,7 @@ abstract  class BaseActivity:AppCompatActivity() , IBaseView{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupLoadingView()
+        initViews()
     }
 
     private fun setupLoadingView() {
@@ -142,5 +143,7 @@ abstract  class BaseActivity:AppCompatActivity() , IBaseView{
             imm.hideSoftInputFromWindow(view.windowToken , 0)
         }
     }
+
+    abstract fun initViews()
 
 }

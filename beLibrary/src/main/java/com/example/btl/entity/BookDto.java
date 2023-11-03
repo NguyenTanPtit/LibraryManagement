@@ -15,11 +15,13 @@ public class BookDto {
     private String image;
     @JsonIgnore
     private Author author;
+    private String authorName;
     private Long authorId;
     private String pageNumber;
     private String price;
     @JsonIgnore
     private Categories categories;
+    private String categoryName;
     private Long categoryId;
 
 }

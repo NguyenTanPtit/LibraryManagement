@@ -59,4 +59,8 @@ class LoginActivity : BaseActivity() {
         }
 
     }
+
+    override fun initViews() {
+//        TODO("Not yet implemented")
+    }
 }

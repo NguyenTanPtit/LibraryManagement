@@ -22,6 +22,10 @@ class MainActivity : BaseActivity() {
         changeFragment()
     }
 
+    override fun initViews() {
+//        TODO("Not yet implemented")
+    }
+
     // create function to change fragment when click on bottom navigation
     private fun changeFragment() {
 

@@ -9,28 +9,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Notice"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold"
+        android:fontFamily="@font/mulish_extrabold"
+        android:textColor="@color/black"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/tv_alert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:text="TextView"
-        android:textSize="18sp"
+        android:textSize="20sp"
+        android:fontFamily="@font/mulish_regular"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_title_alert" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_alert"
+        app:layout_constraintVertical_bias="0.118" />
 
     <TextView
         android:id="@+id/btn_close_alert"
@@ -39,7 +44,7 @@
         android:layout_marginTop="20dp"
         android:text="Ok"
         android:textAllCaps="true"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

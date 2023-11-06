@@ -47,15 +47,22 @@ import java.util.List;
         public ResponseEntity<GetBookResponse> getAllByCategory(
                 @RequestParam Long id
         ) {
-            List<Book> list = service.getAllByCategory(id);
-            List<BookDto> listBookDto = new LinkedList<>();
-            list.forEach(item -> listBookDto.add(BookMapper.Mapper.mapToDto(item)));
-            GetBookResponse getBookResponse = GetBookResponse.builder()
-                    .message("thanh cong")
-                    .data(list)
-                    .build();
-            return new ResponseEntity<>(getBookResponse, HttpStatusCode.valueOf(200));
-//            return service.getAllByCategory(id);
+            try {
+                List<Book> list = service.getAllByCategory(id);
+                List<BookDto> listBookDto = new LinkedList<>();
+                list.forEach(item -> listBookDto.add(BookMapper.Mapper.mapToDto(item)));
+                GetBookResponse getBookResponse = GetBookResponse.builder()
+                        .message(null)
+                        .data(listBookDto)
+                        .build();
+                return new ResponseEntity<>(getBookResponse, HttpStatusCode.valueOf(200));
+            }catch (Exception e){
+                GetBookResponse getBookResponse = GetBookResponse.builder()
+                        .message("Some thing wrong! Please try again later!")
+                        .data(null)
+                        .build();
+                return new ResponseEntity<>(getBookResponse, HttpStatusCode.valueOf(500));
+            }
         }
 
         @PostMapping("/getAll")
@@ -85,6 +92,23 @@ import java.util.List;
                 return EntityResponse.builder()
                         .message("Delete success!")
                         .data(null)
+                        .build();
+            }catch (Exception e){
+                return EntityResponse.builder()
+                        .message("Some thing wrong! Please try again later!")
+                        .data(null)
+                        .build();
+            }
+        }
+
+        @GetMapping("/getBookById")
+        public EntityResponse getBookById(@RequestParam Integer id) {
+            try {
+                Book book = service.getBookById(id);
+                BookDto bookDto = BookMapper.Mapper.mapToDto(book);
+                return EntityResponse.builder()
+                        .message(null)
+                        .data(bookDto)
                         .build();
             }catch (Exception e){
                 return EntityResponse.builder()

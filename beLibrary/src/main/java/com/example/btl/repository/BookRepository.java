@@ -15,4 +15,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> getAllByCategories_Id(@Param("id") Long id);
     @Query(value = "select * from book where author_id = :id", nativeQuery = true)
     List<Book> getAllByAuthorId(Long id);
+
+    void deleteById(Integer id);
 }

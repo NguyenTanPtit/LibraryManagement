@@ -1,8 +1,11 @@
 package com.example.btl.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import com.example.btl.entity.ERole;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,5 +29,12 @@ public class User {
     private String dateOfBirth;
     @Enumerated(EnumType.STRING)
     private ERole role;
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<BorrowQueueDetail> borrowQueueDetails;
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    private Fine fine;
+
 
 }

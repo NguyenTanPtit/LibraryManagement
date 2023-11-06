@@ -19,7 +19,7 @@ public class CategoriesService {
     public List<Categories> getALlCategories() {
         return categoriesRepo.findAll();
     }
-    @Query(value = "SELECT * FROM book b WHERE b.categories_id = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM book b WHERE b.category_id = :id", nativeQuery = true)
     public List<Book> getBooksByCategoriesId(Long id) {
         return categoriesRepo.findBooksById(id);
     }

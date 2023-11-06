@@ -14,6 +14,12 @@ class ApiPath {
         const val GET_ALL_AUTHORS = "authors/getAll"
 
         const val DELETE_BOOK = "bookController/deleteById"
+
+        const val GET_QUEUE_BY_BOOK_ID = "queue/getQueueByBookId"
+
+        const val GET_FINE_BY_USER_ID = "fineController/getFineByUserId"
+
+        const val JOIN_QUEUE = "queue/joinQueue"
     }
 
 }

@@ -9,6 +9,8 @@ import com.example.librarymanagement.BuildConfig
 import com.example.librarymanagement.data.remote.book.service.AuthorService
 import com.example.librarymanagement.data.remote.book.service.BookService
 import com.example.librarymanagement.data.remote.book.service.CategoriesService
+import com.example.librarymanagement.data.remote.book.service.FineService
+import com.example.librarymanagement.data.remote.book.service.QueueService
 import com.example.librarymanagement.data.remote.common.ApiHttpClient
 import com.example.librarymanagement.data.remote.login.LoginService
 import com.google.gson.Gson
@@ -110,4 +112,12 @@ object AppModule {
     @Provides
     fun provideBookService(retrofit: Retrofit): BookService =
         retrofit.create(BookService::class.java)
+
+    @Provides
+    fun provideQueueService(retrofit: Retrofit): QueueService =
+        retrofit.create(QueueService::class.java)
+
+    @Provides
+    fun FineService (retrofit: Retrofit): FineService =
+        retrofit.create(FineService::class.java)
 }

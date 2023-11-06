@@ -223,9 +223,74 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_student"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2"
+                    android:padding="5dp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/ll_date_borrow"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="From(*):"
+                            android:layout_marginStart="10dp"
+                            android:textColor="@color/gray"
+                            android:fontFamily="@font/mulish_italic"/>
+                        <EditText
+                            android:id="@+id/edtDateBorrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_edit_date"
+                            android:hint="Date borrow"
+                            android:padding="10dp"
+                            android:fontFamily="@font/mulish_italic"
+                            android:textSize="16sp"
+                            android:layout_margin="10dp"
+                            android:lines="1"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/ic_calendar"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_date_return"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="To(*):"
+                            android:layout_marginStart="10dp"
+                            android:textColor="@color/gray"
+                            android:fontFamily="@font/mulish_italic"/>
+                        <EditText
+                            android:id="@+id/edtDateDue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_edit_date"
+                            android:hint="Return date"
+                            android:fontFamily="@font/mulish_italic"
+                            android:textSize="16sp"
+                            android:padding="10dp"
+                            android:layout_margin="10dp"
+                            android:lines="1"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/ic_calendar"/>
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnJoinQueue"
@@ -253,6 +318,7 @@
                     android:layout_marginBottom="10dp"/>
 
                 <TextView
+                    android:id="@+id/tv_book_borrow_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mulish_italic"

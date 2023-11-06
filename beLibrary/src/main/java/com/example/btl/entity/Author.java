@@ -1,9 +1,6 @@
 package com.example.btl.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -17,6 +14,7 @@ import java.util.List;
 public class Author {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "author") // mappedBy: đánh dấu thuộc tính nào là khóa ngoại

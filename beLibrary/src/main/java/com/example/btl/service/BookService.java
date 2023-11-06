@@ -7,6 +7,7 @@ import com.example.btl.payload.response.AuthenticationResponse;
 import com.example.btl.payload.response.CreateBookResponse;
 import com.example.btl.payload.response.GetBookResponse;
 import com.example.btl.repository.BookRepository;
+import com.example.btl.repository.QueueRepository;
 import com.example.btl.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookService {
     private final BookRepository bookRepository;
+    private final QueueRepository queueRepository;
     public CreateBookResponse addBook(CreateBookRequest request) {
         var book = Book.builder()
                 .title(request.getTitle())
@@ -25,7 +27,10 @@ public class BookService {
                 .categories(request.getCategory())
                 .price(request.getPrice())
                 .build();
-        bookRepository.save(book);
+        Book b = bookRepository.save(book);
+        QueueBorrow q = new QueueBorrow();
+        q.setBook(b);
+        queueRepository.save(q);
         return CreateBookResponse.builder()
                 .message("thanh cong")
                 .build();
@@ -59,5 +64,9 @@ public class BookService {
 
     public void deleteById(Integer id) {
         bookRepository.deleteById(id);
+    }
+
+    public Book getBookById(Integer id) {
+        return bookRepository.findById(id).orElse(null);
     }
 }

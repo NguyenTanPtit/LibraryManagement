@@ -13,7 +13,7 @@ data class Book(
     var category: Category,
     var price:String,
     var pageNumber:String
-)
+):Serializable
 
 data class Author(
     val id:String,

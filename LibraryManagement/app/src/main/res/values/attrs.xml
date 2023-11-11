@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SpinnerComponent_android_title">
+        <attr name="android:text" />
+
+    </declare-styleable>
+    <declare-styleable name="SpinnerComponent"></declare-styleable>
+    <declare-styleable name="SpinnerComponent_android_required">
+        <attr name="android:required" />
+        <attr name="android:textColor"/>
+    </declare-styleable>
+</resources>

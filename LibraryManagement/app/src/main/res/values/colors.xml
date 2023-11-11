@@ -6,4 +6,5 @@
     <color name="color_btn">#252325</color>
     <color name="green">#97F19A</color>
     <color name="state_borrowed">#F17EA5</color>
+    <color name="textRed">#F40355</color>
 </resources>

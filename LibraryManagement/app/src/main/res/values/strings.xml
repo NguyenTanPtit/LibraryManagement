@@ -14,4 +14,6 @@
     <string name="author">Author</string>
     <string name="recent_book">Recent Book</string>
     <string name="delete">Delete</string>
+    <string name="hint_option">--option--</string>
+    <string name="state">State</string>
 </resources>

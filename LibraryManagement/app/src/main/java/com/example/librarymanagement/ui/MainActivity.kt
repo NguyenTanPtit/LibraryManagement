@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.viewbinding.ViewBinding
 import com.example.librarymanagement.R
 import com.example.librarymanagement.base.BaseActivity
+import com.example.librarymanagement.data.local.user.UserManager
 import com.example.librarymanagement.databinding.ActivityMainBinding
 import com.example.librarymanagement.ui.general.function.FunctionFragment
 import com.example.librarymanagement.ui.general.home.HomeFragment
@@ -28,7 +29,7 @@ class MainActivity : BaseActivity() {
 
     // create function to change fragment when click on bottom navigation
     private fun changeFragment() {
-
+        binding.bottomNavigationView.menu.findItem(R.id.function).isVisible = UserManager.user?.role == "ADMIN"
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             val selectedFragment: Fragment? = when (it.itemId) {
                 R.id.home -> HomeFragment()

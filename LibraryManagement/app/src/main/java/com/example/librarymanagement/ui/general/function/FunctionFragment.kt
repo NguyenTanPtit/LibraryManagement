@@ -1,18 +1,20 @@
 package com.example.librarymanagement.ui.general.function
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.librarymanagement.R
-import dagger.hilt.EntryPoint
+import com.example.librarymanagement.base.BaseFragment
+import com.example.librarymanagement.databinding.FragmentFunctionBinding
+import com.example.librarymanagement.ui.books.ListBookAcitvity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FunctionFragment : Fragment() {
+class FunctionFragment : BaseFragment() {
 
-
+    val binding: FragmentFunctionBinding by lazy {
+        FragmentFunctionBinding.inflate(layoutInflater)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,10 +23,21 @@ class FunctionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View{
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_function, container, false)
+        return binding.root
+
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews()
+    }
+
+    private fun initViews() {
+        binding.manageBook.setOnClickListener {
+            start(ListBookAcitvity::class.java)
+        }
+    }
 
 }

@@ -2,6 +2,7 @@ package com.example.librarymanagement.base
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -106,5 +107,11 @@ open class BaseFragment:Fragment(),IBaseView {
 
     override fun onLoadMore() {
         TODO("Not yet implemented")
+    }
+
+    protected fun start(clazz: Class<*>, bundle: Bundle? = null) {
+        val intent = Intent(requireContext(), clazz)
+        bundle?.let { intent.putExtras(it) }
+        startActivity(intent)
     }
 }

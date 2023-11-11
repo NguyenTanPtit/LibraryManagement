@@ -6,12 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.librarymanagement.R
+import com.example.librarymanagement.base.BaseFragment
+import com.example.librarymanagement.databinding.FragmentNotificationBinding
 import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NotificationFragment : Fragment() {
+class NotificationFragment : BaseFragment() {
 
+    val binding: FragmentNotificationBinding by lazy {
+        FragmentNotificationBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,10 +26,11 @@ class NotificationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification, container, false)
+        return binding.root
     }
+
 
 
 }

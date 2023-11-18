@@ -4,24 +4,31 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Book(
-    val id: String,
-    var title:String,
-    var cover: String,
-    var state: String,
-    var description: String,
-    var author: Author,
-    var category: Category,
-    var price:String,
-    var pageNumber:String
+    val id: String? = null,
+    var title:String? = null,
+    @SerializedName("image")
+    var cover: String? = null,
+    var state: String? = null,
+    var description: String? = null,
+    var author: Author? = null,
+    var category: Category? = null,
+    var price:String? = null,
+    var pageNumber:String?= null
 ):Serializable
 
 data class Author(
-    val id:String,
-    val name:String
+    val id:String? = null,
+    val name:String? = null,
 )
 
-data class Category(val id: Long,
- val name:String)
+data class AuthorMain(
+    val id:Long? = null,
+    val name:String? = null,
+)
+
+data class Category(
+    val id: Long? = null,
+ val name:String? = null,)
 
 data class GetBookResponse(
     val message: String?,
@@ -48,4 +55,8 @@ data class BookResponse (val message:String?, val data:List<BookDetailResponse>?
 data class ApiResponse<T>(
     val message: String?,
     val data: T?
+)
+
+data class UpdateBookResponse(
+    val message: String?
 )

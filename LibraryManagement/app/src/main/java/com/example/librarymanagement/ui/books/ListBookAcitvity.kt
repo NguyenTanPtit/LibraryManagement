@@ -37,6 +37,10 @@ class ListBookAcitvity : BaseActivity() {
             intent.putExtra("book", listBook[it])
             startActivity(intent)
         }
+        binding.layoutHeader.btnBack.setOnClickListener {
+            onBackPressed()
+        }
+        binding.layoutHeader.title.text = "Manage Book"
         binding.rvBook.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = bookAdapter

@@ -26,27 +26,23 @@ public class BookService {
                 .pageNumber(request.getPageNumber())
                 .categories(request.getCategory())
                 .price(request.getPrice())
+                .state(request.getState())
+                .image(request.getImage())
+                .description(request.getDescription())
                 .build();
         Book b = bookRepository.save(book);
         QueueBorrow q = new QueueBorrow();
         q.setBook(b);
         queueRepository.save(q);
         return CreateBookResponse.builder()
-                .message("thanh cong")
+                .message("Add book success!")
                 .build();
     }
 
-    public CreateBookResponse update(String title, Author author, String price, Categories category, String pageNumber) {
-        var book = Book.builder()
-                .title(title)
-                .author(author)
-                .pageNumber(pageNumber)
-                .categories(category)
-                .price(price)
-                .build();
+    public CreateBookResponse update(Book book) {
         bookRepository.save(book);
         return CreateBookResponse.builder()
-                .message("thanh cong")
+                .message("Update book success!")
                 .build();
     }
 
@@ -68,5 +64,11 @@ public class BookService {
 
     public Book getBookById(Integer id) {
         return bookRepository.findById(id).orElse(null);
+    }
+
+    public void updateState(Long id, String state) {
+        Book book = bookRepository.findById(id.intValue()).get();
+        book.setState(state);
+        bookRepository.save(book);
     }
 }

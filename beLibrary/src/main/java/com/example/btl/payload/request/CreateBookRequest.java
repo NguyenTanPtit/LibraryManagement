@@ -17,4 +17,7 @@ public class CreateBookRequest {
     private String pageNumber;
     private String price;
     private Categories category;
+    private String image;
+    private String state;
+    private String description;
 }

@@ -8,9 +8,11 @@ import androidx.annotation.RequiresApi
 import com.example.librarymanagement.BuildConfig
 import com.example.librarymanagement.data.remote.book.service.AuthorService
 import com.example.librarymanagement.data.remote.book.service.BookService
+import com.example.librarymanagement.data.remote.book.service.CallCardService
 import com.example.librarymanagement.data.remote.book.service.CategoriesService
 import com.example.librarymanagement.data.remote.book.service.FineService
 import com.example.librarymanagement.data.remote.book.service.QueueService
+import com.example.librarymanagement.data.remote.book.service.UserService
 import com.example.librarymanagement.data.remote.common.ApiHttpClient
 import com.example.librarymanagement.data.remote.login.LoginService
 import com.google.gson.Gson
@@ -120,4 +122,12 @@ object AppModule {
     @Provides
     fun FineService (retrofit: Retrofit): FineService =
         retrofit.create(FineService::class.java)
+
+    @Provides
+    fun provideUserServices(retrofit: Retrofit): UserService =
+        retrofit.create(UserService::class.java)
+
+    @Provides
+    fun provideCallCardService(retrofit: Retrofit): CallCardService =
+        retrofit.create(CallCardService::class.java)
 }

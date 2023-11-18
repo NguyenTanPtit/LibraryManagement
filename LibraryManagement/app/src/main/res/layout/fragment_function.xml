@@ -21,10 +21,37 @@
             android:gravity="center"
             android:layout_marginTop="20dp"
             android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/manage_call_card"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                android:elevation="10dp"
+                android:padding="5dp"
+                app:cardCornerRadius="15dp">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_call_card"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/mulish_regular"
+                    android:text="Manage Call Card"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/convert"
+                android:id="@+id/manage_author"
                 android:layout_width="250dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"
@@ -81,7 +108,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/stopWatch"
+                android:id="@+id/manage_student"
                 android:layout_width="250dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"

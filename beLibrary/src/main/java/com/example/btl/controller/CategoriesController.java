@@ -55,11 +55,41 @@ public class CategoriesController {
     public CategoriesResponse createCategory(@RequestParam String name) {
         try {
             Categories data =categoriesService.createCategory(name);
-            List<Categories> list = new ArrayList<>();
-            list.add(data);
             return CategoriesResponse.builder()
-                    .message(null)
-                    .data(list)
+                    .message("Create category successfully!")
+                    .data(data)
+                    .build();
+        }catch (Exception e){
+            return CategoriesResponse.builder()
+                    .message("Some thing wrong! Please try again later!")
+                    .data(null)
+                    .build();
+        }
+    }
+
+    @PostMapping("/updateCategory")
+    public CategoriesResponse updateCategory(@RequestBody Categories category) {
+        try {
+            Categories data = categoriesService.updateCategory(category);
+            return CategoriesResponse.builder()
+                    .message("Update category successfully!")
+                    .data(data)
+                    .build();
+        }catch (Exception e){
+            return CategoriesResponse.builder()
+                    .message("Some thing wrong! Please try again later!")
+                    .data(null)
+                    .build();
+        }
+    }
+
+    @PostMapping("/deleteCategory")
+    public CategoriesResponse deleteCategory(@RequestParam Long id) {
+        try {
+            categoriesService.deleteCategory(id);
+            return CategoriesResponse.builder()
+                    .message("Delete category successfully!")
+                     .data(null)
                     .build();
         }catch (Exception e){
             return CategoriesResponse.builder()

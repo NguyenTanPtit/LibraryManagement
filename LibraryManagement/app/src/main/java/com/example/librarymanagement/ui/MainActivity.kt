@@ -9,9 +9,11 @@ import com.example.librarymanagement.base.BaseActivity
 import com.example.librarymanagement.data.local.user.UserManager
 import com.example.librarymanagement.databinding.ActivityMainBinding
 import com.example.librarymanagement.ui.general.function.FunctionFragment
+import com.example.librarymanagement.ui.general.history.HistoryFragment
 import com.example.librarymanagement.ui.general.home.HomeFragment
 import com.example.librarymanagement.ui.general.menu.MenuFragment
 import com.example.librarymanagement.ui.general.notification.NotificationFragment
+import com.google.api.ResourceDescriptor.History
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,10 +32,12 @@ class MainActivity : BaseActivity() {
     // create function to change fragment when click on bottom navigation
     private fun changeFragment() {
         binding.bottomNavigationView.menu.findItem(R.id.function).isVisible = UserManager.user?.role == "ADMIN"
+        binding.bottomNavigationView.menu.findItem(R.id.history).isVisible = UserManager.user?.role == "STUDENT"
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             val selectedFragment: Fragment? = when (it.itemId) {
                 R.id.home -> HomeFragment()
                 R.id.function -> FunctionFragment()
+                R.id.history -> HistoryFragment()
                 R.id.notifications -> NotificationFragment()
                 R.id.menu -> MenuFragment()
                 else -> null

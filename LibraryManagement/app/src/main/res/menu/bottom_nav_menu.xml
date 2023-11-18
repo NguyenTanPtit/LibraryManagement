@@ -11,6 +11,9 @@
     <item android:id="@+id/notifications"
         android:icon="@drawable/ic_notification"
         android:title="@string/notifications" />
+    <item android:id="@+id/history"
+        android:icon="@drawable/baseline_history_edu_24"
+        android:title="@string/history" />
     <item android:id="@+id/menu"
         android:icon="@drawable/ic_menu"
         android:title="@string/menu" />

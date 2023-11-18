@@ -17,7 +17,7 @@ fun ImageView.loadImageBookCover(url: Uri) {
 fun ImageView.loadImageUser(url: Uri) {
     Glide.with(this)
         .load(url)
-        .error("https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg".toUri())
+        .error(R.drawable.default_avatar)
         .into(this)
 }
 

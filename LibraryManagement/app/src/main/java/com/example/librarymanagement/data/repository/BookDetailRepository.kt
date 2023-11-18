@@ -3,6 +3,7 @@ package com.example.librarymanagement.data.repository
 import com.example.librarymanagement.data.remote.dataSource.BookDataSource
 import com.example.librarymanagement.data.remote.dataSource.FineDataSource
 import com.example.librarymanagement.data.remote.dataSource.QueueDataSource
+import com.example.librarymanagement.models.Book
 import javax.inject.Inject
 
 class BookDetailRepository  @Inject constructor(val dataSource: BookDataSource, val queueDataSource: QueueDataSource, val fineDataSource: FineDataSource) {
@@ -20,4 +21,6 @@ class BookDetailRepository  @Inject constructor(val dataSource: BookDataSource, 
         dateDue: String,
         position: Int,
     ) = queueDataSource.joinQueue(bookId, userId, dateBorrow, dateDue, position)
+
+    suspend fun updateBook(book: Book) = dataSource.updateBook(book)
 }

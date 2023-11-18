@@ -16,14 +16,17 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDialog
 import androidx.appcompat.widget.ContentFrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewbinding.ViewBinding
 import com.example.librarymanagement.R
+import com.example.librarymanagement.data.local.user.UserManager
 import com.example.librarymanagement.databinding.LayoutAlertBinding
 import com.example.librarymanagement.databinding.LayoutLoadingBinding
+import com.example.librarymanagement.ui.login.LoginActivity
 
 abstract  class BaseActivity:AppCompatActivity() , IBaseView{
     private var loadingView: View? = null
@@ -31,6 +34,9 @@ abstract  class BaseActivity:AppCompatActivity() , IBaseView{
         super.onCreate(savedInstanceState)
         setupLoadingView()
         initViews()
+        if(UserManager.user == null && this !is LoginActivity){
+            start(LoginActivity::class.java)
+        }
     }
 
     private fun setupLoadingView() {

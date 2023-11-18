@@ -16,4 +16,7 @@
     <string name="delete">Delete</string>
     <string name="hint_option">--option--</string>
     <string name="state">State</string>
+    <string name="manage_author">Manage Author</string>
+    <string name="update">Update\n</string>
+    <string name="history">History</string>
 </resources>

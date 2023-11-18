@@ -20,6 +20,26 @@ class ApiPath {
         const val GET_FINE_BY_USER_ID = "fineController/getFineByUserId"
 
         const val JOIN_QUEUE = "queue/joinQueue"
+
+        const val UPDATE_BOOK = "bookController/updateBook"
+
+        const val ADD_BOOK = "bookController/addBook"
+
+        const val CREATE_AUTHOR = "authors/addAuthor"
+
+        const val UPDATE_AUTHOR = "authors/updateAuthor"
+
+        const val DELETE_AUTHOR = "authors/deleteAuthor"
+
+        const val GET_ALL_USERS = "student/getAll"
+
+        const val CREATE_USER = "student/add"
+
+        const val UPDATE_USER = "student/update"
+
+        const val DELETE_USER = "student/delete"
+
+        const val GET_ALL_CALL_CARDS = "card/getAll"
     }
 
 }

@@ -19,6 +19,21 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.manage.student.DetailStudentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.manage.student.ManageStudentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.manage.category.ManageCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.manage.callcard.ManageCallCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.manage.author.ManageAuthorActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.books.ManageBookActivity"
             android:exported="false" />
         <activity

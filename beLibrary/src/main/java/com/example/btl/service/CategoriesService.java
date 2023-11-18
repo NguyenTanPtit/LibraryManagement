@@ -29,4 +29,14 @@ public class CategoriesService {
         category.setName(name);
         return categoriesRepo.save(category);
     }
+
+    // update category
+    public Categories updateCategory(Categories category) {
+        return categoriesRepo.save(category);
+    }
+
+    // delete category
+    public void deleteCategory(Long id) {
+        categoriesRepo.deleteById(id);
+    }
 }

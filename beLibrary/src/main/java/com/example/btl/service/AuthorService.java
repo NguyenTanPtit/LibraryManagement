@@ -16,4 +16,17 @@ public class AuthorService {
     public List<Author> getAllAuthors() {
         return authorRepo.findAll();
     }
+    //update author
+    public Author update(Author author) {
+        return authorRepo.save(author);
+    }
+
+    //add author
+    public Author addAuthor(Author author) {
+        return authorRepo.save(author);
+    }
+    //delete author
+    public void deleteAuthor(Long id) {
+        authorRepo.deleteById(id);
+    }
 }

@@ -2,19 +2,22 @@ package com.example.librarymanagement.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 @Entity
 open class User(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val userName: String,
-    val avatar: String,
-    val password: String,
+    val id: Int? = null,
+    @SerializedName("username")
+    var userName: String,
+    var avatar: String,
+    var password: String,
     var fullName: String,
     var address: String,
-    val email: String,
-    val phoneNumber: String,
+    var email: String,
+    var phoneNumber: String,
     val dateOfBirth: String,
     val role: String
-)
+): Serializable
 

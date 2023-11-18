@@ -24,12 +24,12 @@ class BookAdapter(val context: Context,val list: MutableList<BookDetailResponse>
                 itemPrice.text = "$${item.price}"
                 Glide.with(context).load(item.cover?.toUri()).error(R.drawable.default_book_cover).into(itemImg)
                 when(item.state) {
-                    "available" -> {
+                    "Available" -> {
                         itemState.text = "Available"
                         itemState.setTextColor(context.resources.getColor(R.color.black))
                         llState.setBackgroundResource(R.color.green)
                     }
-                    "borrowed" -> {
+                    "Borrowed" -> {
                         itemState.text = "Borrowed"
                         itemState.setTextColor(context.resources.getColor(R.color.black))
                         llState.setBackgroundResource(R.color.state_borrowed)

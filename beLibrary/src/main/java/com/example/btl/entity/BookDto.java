@@ -23,5 +23,5 @@ public class BookDto {
     private Categories categories;
     private String categoryName;
     private Long categoryId;
-
+    private String state;
 }

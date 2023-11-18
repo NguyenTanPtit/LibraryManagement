@@ -14,5 +14,5 @@ public class CallCardDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String callCardId;
-    private String bookId;
+    private Long bookId;
 }

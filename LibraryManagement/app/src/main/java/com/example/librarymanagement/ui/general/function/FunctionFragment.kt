@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import com.example.librarymanagement.base.BaseFragment
 import com.example.librarymanagement.databinding.FragmentFunctionBinding
 import com.example.librarymanagement.ui.books.ListBookAcitvity
+import com.example.librarymanagement.ui.manage.author.ManageAuthorActivity
+import com.example.librarymanagement.ui.manage.callcard.ManageCallCardActivity
+import com.example.librarymanagement.ui.manage.category.ManageCategoryActivity
+import com.example.librarymanagement.ui.manage.student.ManageStudentActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +41,22 @@ class FunctionFragment : BaseFragment() {
     private fun initViews() {
         binding.manageBook.setOnClickListener {
             start(ListBookAcitvity::class.java)
+        }
+
+        binding.manageStudent.setOnClickListener {
+            start(ManageStudentActivity::class.java)
+        }
+
+        binding.manageCallCard.setOnClickListener {
+            start(ManageCallCardActivity::class.java)
+        }
+
+        binding.manageCategory.setOnClickListener {
+            start(ManageCategoryActivity::class.java)
+        }
+
+        binding.manageAuthor.setOnClickListener {
+            start(ManageAuthorActivity::class.java)
         }
     }
 

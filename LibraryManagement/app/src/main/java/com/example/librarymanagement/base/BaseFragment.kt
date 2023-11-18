@@ -18,7 +18,9 @@ import androidx.appcompat.app.AppCompatDialog
 import androidx.appcompat.widget.ContentFrameLayout
 import androidx.fragment.app.Fragment
 import com.example.librarymanagement.R
+import com.example.librarymanagement.data.local.user.UserManager
 import com.example.librarymanagement.databinding.LayoutAlertBinding
+import com.example.librarymanagement.ui.login.LoginActivity
 
 open class BaseFragment:Fragment(),IBaseView {
     private var loadingView: View? = null
@@ -29,6 +31,9 @@ open class BaseFragment:Fragment(),IBaseView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupLoadingView()
+        if(UserManager.user == null){
+            start(LoginActivity::class.java)
+        }
     }
     @SuppressLint("ResourceType")
     fun setTitle(title:String){

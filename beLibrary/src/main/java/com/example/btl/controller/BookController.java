@@ -32,14 +32,10 @@ import java.util.List;
             return ResponseEntity.ok(service.addBook(request));
         }
         @PostMapping("/updateBook")
-        public ResponseEntity<CreateBookResponse> authenticate(
-                @RequestParam  String title,
-                @RequestParam Author author,
-                @RequestParam String pageNumber,
-                @RequestParam String price,
-                @RequestParam Categories category
+        public ResponseEntity<CreateBookResponse> updateBook(
+                @RequestBody Book book
         ) {
-            var response = service.update(title,author,price,category,pageNumber);
+            var response = service.update(book);
             return new ResponseEntity<>(response, HttpStatusCode.valueOf(200));
         }
 

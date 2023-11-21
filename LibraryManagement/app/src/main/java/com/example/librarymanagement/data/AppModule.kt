@@ -11,6 +11,7 @@ import com.example.librarymanagement.data.remote.book.service.BookService
 import com.example.librarymanagement.data.remote.book.service.CallCardService
 import com.example.librarymanagement.data.remote.book.service.CategoriesService
 import com.example.librarymanagement.data.remote.book.service.FineService
+import com.example.librarymanagement.data.remote.book.service.NotificationService
 import com.example.librarymanagement.data.remote.book.service.QueueService
 import com.example.librarymanagement.data.remote.book.service.UserService
 import com.example.librarymanagement.data.remote.common.ApiHttpClient
@@ -130,4 +131,8 @@ object AppModule {
     @Provides
     fun provideCallCardService(retrofit: Retrofit): CallCardService =
         retrofit.create(CallCardService::class.java)
+
+    @Provides
+    fun provideNotificationService(retrofit: Retrofit): NotificationService =
+        retrofit.create(NotificationService::class.java)
 }

@@ -8,10 +8,14 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.librarymanagement.R
+import com.example.librarymanagement.data.local.user.UserManager
 import com.example.librarymanagement.databinding.ItemBookRecBinding
 import com.example.librarymanagement.models.BookDetailResponse
+import com.example.librarymanagement.ultils.gone
+import com.example.librarymanagement.ultils.visible
 
-class BookAdapter(val context: Context,val list: MutableList<BookDetailResponse>, val onItemClick:(Int) -> Unit):
+class BookAdapter(val context: Context,
+                  var list: MutableList<BookDetailResponse>, val onItemClick:(Int) -> Unit):
     RecyclerView.Adapter<BookAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemBookRecBinding): RecyclerView.ViewHolder(binding.root) {
@@ -35,6 +39,19 @@ class BookAdapter(val context: Context,val list: MutableList<BookDetailResponse>
                         llState.setBackgroundResource(R.color.state_borrowed)
                     }
                 }
+                deleteItem.setOnClickListener {
+                    list.remove(item)
+                    notifyDataSetChanged()
+                }
+                if(UserManager.user?.role == "ADMIN") {
+                    root.setOnLongClickListener {
+                        binding.deleteItem.visible()
+                        true
+                    }
+                    itemImg.setOnClickListener {
+                        binding.deleteItem.gone()
+                    }
+                }
             }
         }
     }
@@ -55,8 +72,7 @@ class BookAdapter(val context: Context,val list: MutableList<BookDetailResponse>
     }
 
     fun updateData(list: List<BookDetailResponse>) {
-        this.list.clear()
-        this.list.addAll(list)
+        this.list = list.toMutableList()
         notifyDataSetChanged()
     }
 }

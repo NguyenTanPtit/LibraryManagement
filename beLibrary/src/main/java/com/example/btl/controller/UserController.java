@@ -7,6 +7,7 @@ import com.example.btl.payload.response.CreateBookResponse;
 import com.example.btl.payload.response.EntityResponse;
 import com.example.btl.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -48,6 +49,7 @@ public class UserController {
     @PostMapping("/update")
     public ResponseEntity<EntityResponse> updateStudent(@RequestBody User user) {
         try {
+            user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(10)));
             service.update(user);
             EntityResponse data = EntityResponse.builder()
                     .message("Update student successfully!")

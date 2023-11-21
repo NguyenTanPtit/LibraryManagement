@@ -26,7 +26,7 @@ public class CallCardService {
 
     public void deleteCallCard(Long id) {
         callCardRepository.deleteById(id);
-        callCardDetailService.deleteAllByCallCardId(id);
+        callCardDetailService.deleteAllByCallCardId(id.toString());
     }
 
     public void addCallCard(CallCardRequest request) {
@@ -38,15 +38,16 @@ public class CallCardService {
                 .note(request.getNote())
                 .state(request.getState())
                 .build();
+        CallCard c = callCardRepository.save(callCard);
         request.getBooks().forEach(book -> {
             CallCardDetail callCardDetail = CallCardDetail.builder()
                     .bookId(Long.valueOf(book.getId()))
-                    .callCardId(String.valueOf(callCard.getId()))
+                    .callCardId(String.valueOf(c.getId()))
                     .build();
             bookService.updateState(Long.valueOf(book.getId()), "Borrowed");
             callCardDetailService.save(callCardDetail);
         });
-        callCardRepository.save(callCard);
+
     }
 
     public void updateCallCard(CallCardRequest request) {
@@ -60,7 +61,7 @@ public class CallCardService {
                 .state(request.getState())
                 .build();
         callCardRepository.save(callCard);
-        callCardDetailService.deleteAllByCallCardId(request.getId());
+        callCardDetailService.deleteAllByCallCardId(request.getId().toString());
         request.getBooks().forEach(book -> {
             CallCardDetail callCardDetail = CallCardDetail.builder()
                     .bookId(Long.valueOf(book.getId()))
@@ -73,6 +74,40 @@ public class CallCardService {
     public List<CallCardResponse> getAll() {
         List<CallCardResponse> callCardRequests = new LinkedList<>();
         List<CallCard> callCards = callCardRepository.findAll();
+        callCards.forEach(callCard -> {
+            List<Book> books = callCardDetailService.getAllBookByCallCard_Id(callCard.getId());
+            List<BookDto> bookDtos = new LinkedList<>();
+            books.forEach(book -> {
+                bookDtos.add(BookMapper.Mapper.mapToDto(book));
+            });
+            User user = userRepository.findById(callCard.getUser().getId()).get();
+            UserDTO userDTO = UserDTO.builder()
+                    .id(user.getId())
+                    .username(user.getUsername())
+                    .email(user.getEmail())
+                    .phoneNumber(user.getPhoneNumber())
+                    .address(user.getAddress())
+                    .fullName(user.getFullName())
+                    .dateOfBirth(user.getDateOfBirth())
+                    .avatar(user.getAvatar())
+                    .role(String.valueOf(user.getRole()))
+                    .build();
+            callCardRequests.add(CallCardResponse.builder()
+                    .id(callCard.getId())
+                    .borrowDate(callCard.getBorrowDate())
+                    .dueDate(callCard.getDueDate())
+                    .state(callCard.getState())
+                    .note(callCard.getNote())
+                    .user(userDTO)
+                    .books(bookDtos)
+                    .build());
+        });
+       return callCardRequests;
+    }
+
+    public List<CallCardResponse> getAllByUserId(Long id) {
+        List<CallCardResponse> callCardRequests = new LinkedList<>();
+        List<CallCard> callCards = callCardRepository.getAllByUserId(id);
         callCards.forEach(callCard -> {
             List<Book> books = callCardDetailService.getAllBookByCallCard_Id(callCard.getId());
             List<BookDto> bookDtos = new LinkedList<>();
@@ -103,5 +138,37 @@ public class CallCardService {
         });
        return callCardRequests;
     }
-
+    public List<CallCardResponse> getAllByBookId(Long id) {
+        List<CallCardResponse> callCardRequests = new LinkedList<>();
+        List<CallCard> callCards = callCardRepository.getAllByBookId(id);
+        callCards.forEach(callCard -> {
+            List<Book> books = callCardDetailService.getAllBookByCallCard_Id(callCard.getId());
+            List<BookDto> bookDtos = new LinkedList<>();
+            books.forEach(book -> {
+                bookDtos.add(BookMapper.Mapper.mapToDto(book));
+            });
+            User user = userRepository.findById(callCard.getUser().getId()).get();
+            UserDTO userDTO = UserDTO.builder()
+                    .id(user.getId())
+                    .username(user.getUsername())
+                    .email(user.getEmail())
+                    .phoneNumber(user.getPhoneNumber())
+                    .address(user.getAddress())
+                    .fullName(user.getFullName())
+                    .dateOfBirth(user.getDateOfBirth())
+                    .avatar(user.getAvatar())
+                    .role(String.valueOf(user.getRole()))
+                    .build();
+            callCardRequests.add(CallCardResponse.builder()
+                    .id(callCard.getId())
+                    .borrowDate(callCard.getBorrowDate())
+                    .dueDate(callCard.getDueDate())
+                    .state(callCard.getState())
+                    .note(callCard.getNote())
+                    .user(userDTO)
+                    .books(bookDtos)
+                    .build());
+        });
+       return callCardRequests;
+    }
 }

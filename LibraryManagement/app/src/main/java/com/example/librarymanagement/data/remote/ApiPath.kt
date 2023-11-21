@@ -40,6 +40,23 @@ class ApiPath {
         const val DELETE_USER = "student/delete"
 
         const val GET_ALL_CALL_CARDS = "card/getAll"
+
+        const val GET_CALL_CARD_BY_ID = "card/getById"
+
+        const val UPDATE_CALL_CARD = "card/update"
+
+        const val CREATE_CALL_CARD = "card/add"
+
+        const val DELETE_CALL_CARD = "card/delete"
+
+        const val GET_ALL_BY_USER_ID = "card/getByUserId"
+        const val GET_ALL_BY_BOOK_ID = "card/getByBookId"
+
+        const val GET_ALL_NOTIFICATIONS = "notification/getAllByUserId"
+
+        const val DELETE_NOTIFICATION = "notification/delete"
+
+        const val ADD_NOTIFICATION = "notification/add"
     }
 
 }

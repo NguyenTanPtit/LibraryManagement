@@ -10,6 +10,8 @@ import com.example.librarymanagement.ui.books.ListBookAcitvity
 import com.example.librarymanagement.ui.manage.author.ManageAuthorActivity
 import com.example.librarymanagement.ui.manage.callcard.ManageCallCardActivity
 import com.example.librarymanagement.ui.manage.category.ManageCategoryActivity
+import com.example.librarymanagement.ui.manage.statistic.StatisticActivity
+import com.example.librarymanagement.ui.manage.statistic.StatisticViewModel
 import com.example.librarymanagement.ui.manage.student.ManageStudentActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -57,6 +59,9 @@ class FunctionFragment : BaseFragment() {
 
         binding.manageAuthor.setOnClickListener {
             start(ManageAuthorActivity::class.java)
+        }
+        binding.manageStatistic.setOnClickListener {
+            start(StatisticActivity::class.java)
         }
     }
 

@@ -8,6 +8,7 @@ import com.example.btl.payload.response.ApiResponse;
 import com.example.btl.payload.response.AuthenticationResponse;
 import com.example.btl.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +20,11 @@ public class AuthenticationService {
     private final UserRepository userRepository;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        String hashedPassword = BCrypt.hashpw(request.getPassword(), BCrypt.gensalt(10));
         var user = User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(hashedPassword)
                 .fullName(request.getFullName())
                 .address(request.getAddress())
                 .dateOfBirth(request.getDateOfBirth())
@@ -37,7 +39,7 @@ public class AuthenticationService {
 
     public ApiResponse authenticate(String username, String password) {
         Optional<User> user = userRepository.findByUsername(username);
-        if (user.isPresent() && user.get().getPassword().equals(password)) {
+        if (user.isPresent() && BCrypt.checkpw(password,user.get().getPassword())) {
             ApiResponse apiResponse = ApiResponse.builder()
                     .data(user)
                     .httpStatus(HttpStatus.OK)

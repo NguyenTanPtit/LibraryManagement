@@ -1,11 +1,13 @@
 package com.example.librarymanagement.ultils
 
 import android.net.Uri
+import android.text.Editable
 import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.example.librarymanagement.R
+
 
 fun ImageView.loadImageBookCover(url: Uri) {
     Glide.with(this)
@@ -35,3 +37,7 @@ fun View.visible(isVisible:Boolean) {
     else
         this.visibility = View.GONE
 }
+
+
+
+fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)

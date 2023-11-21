@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -54,7 +55,11 @@ public class CallCardController {
                     .build();
             return ResponseEntity.ok(data);
         }catch (Exception e){
-            return ResponseEntity.badRequest().body(null);
+            EntityResponse data = EntityResponse.builder()
+                    .message("Add call card failed!")
+                    .data(null)
+                    .build();
+            return ResponseEntity.ok().body(data);
         }
     }
 
@@ -68,7 +73,46 @@ public class CallCardController {
                     .build();
             return ResponseEntity.ok(data);
         }catch (Exception e){
-            return ResponseEntity.badRequest().body(null);
+            System.out.println(Arrays.toString(e.getStackTrace()));
+            EntityResponse data = EntityResponse.builder()
+                    .message("Update call card failed!")
+                    .data(null)
+                    .build();
+            return ResponseEntity.ok().body(data);
+        }
+    }
+
+    @PostMapping("/getByUserId")
+    public ResponseEntity<EntityResponse> getByUserId(@RequestParam Long id) {
+        try {
+            EntityResponse data = EntityResponse.builder()
+                    .message("Get call card by user id successfully!")
+                    .data(service.getAllByUserId(id))
+                    .build();
+            return ResponseEntity.ok(data);
+        }catch (Exception e){
+            EntityResponse data = EntityResponse.builder()
+                    .message("Get call card by user id successfully!")
+                    .data(null)
+                    .build();
+            return ResponseEntity.ok().body(data);
+        }
+    }
+
+    @PostMapping("/getByBookId")
+    public ResponseEntity<EntityResponse> getByBookId(@RequestParam Long id) {
+        try {
+            EntityResponse data = EntityResponse.builder()
+                    .message("Get call card by book id successfully!")
+                    .data(service.getAllByBookId(id))
+                    .build();
+            return ResponseEntity.ok(data);
+        }catch (Exception e){
+            EntityResponse data = EntityResponse.builder()
+                    .message("Failed to get call card by book id!")
+                    .data(null)
+                    .build();
+            return ResponseEntity.ok().body(data);
         }
     }
 }

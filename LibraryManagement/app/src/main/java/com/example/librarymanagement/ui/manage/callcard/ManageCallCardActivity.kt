@@ -3,6 +3,7 @@ package com.example.librarymanagement.ui.manage.callcard
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librarymanagement.R
 import com.example.librarymanagement.base.BaseActivity
@@ -21,7 +22,7 @@ class ManageCallCardActivity : BaseActivity() {
     private val listCallCard = mutableListOf<CallCard>()
 
     private val adapter = CallCardAdapter(this,listCallCard) {
-
+        start(DetailCallCardActivity::class.java, bundleOf("callCard" to it))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +38,10 @@ class ManageCallCardActivity : BaseActivity() {
         }
         binding.rcvCallCard.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         binding.rcvCallCard.adapter = adapter
+
+        binding.fabAddCallCard.setOnClickListener {
+            start(DetailCallCardActivity::class.java)
+        }
         initObserve()
     }
 

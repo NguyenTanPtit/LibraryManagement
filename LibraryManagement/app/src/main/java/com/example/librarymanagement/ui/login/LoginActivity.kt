@@ -26,7 +26,6 @@ class LoginActivity : BaseActivity() {
             val username = binding.username.text.toString()
             val password = binding.edtPassword.text.toString()
             viewModel.login(username,password)
-
         }
 
 

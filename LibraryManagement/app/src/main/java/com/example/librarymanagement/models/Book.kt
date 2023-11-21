@@ -49,7 +49,8 @@ data class BookDetailResponse (val id: String?,
                                val authorName: String?,
                                var category: Category?,
                                var price:String?,
-                               var pageNumber:String?, ): Serializable
+                               var pageNumber:String?,
+                               var isChecked : Boolean = false): Serializable
 data class BookResponse (val message:String?, val data:List<BookDetailResponse>?)
 
 data class ApiResponse<T>(

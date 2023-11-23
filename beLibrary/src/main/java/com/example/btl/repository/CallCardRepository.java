@@ -19,4 +19,8 @@ public interface CallCardRepository extends JpaRepository<CallCard, Long> {
     @Query("select c from CallCard c join CallCardDetail cd on CAST(c.id AS string) = cd.callCardId where cd.bookId = :id")
     List<CallCard> getAllByBookId(Long id);
 
+    //find call card by borrow date and book id and user id
+    @Query("select c from CallCard c join CallCardDetail cd on CAST(c.id AS string) = cd.callCardId where cd.bookId = :bookId and c.borrowDate = :borrowDate and c.user.id = :userId")
+    CallCard findByBorrowDateAndBookId(String borrowDate, Long bookId, Long userId);
+
 }

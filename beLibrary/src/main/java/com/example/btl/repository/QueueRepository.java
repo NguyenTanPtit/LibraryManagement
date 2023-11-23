@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface QueueRepository extends JpaRepository<QueueBorrow, Long> {
     @Query(value = "SELECT * FROM queue_borrow q WHERE q.book_id = :id", nativeQuery = true)
     QueueBorrow getQueueBorrowByBookId(Long id);
+
+
 }

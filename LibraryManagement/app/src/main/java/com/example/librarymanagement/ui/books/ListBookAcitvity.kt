@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.librarymanagement.R
 import com.example.librarymanagement.base.BaseActivity
 import com.example.librarymanagement.base.Resource
+import com.example.librarymanagement.data.local.user.UserManager
 import com.example.librarymanagement.databinding.ActivityListBookAcitvityBinding
 import com.example.librarymanagement.models.BookDetailResponse
 import com.example.librarymanagement.ui.general.home.BookAdapter
@@ -32,6 +33,13 @@ class ListBookAcitvity : BaseActivity() {
     }
 
     override fun initViews() {
+        if(UserManager.user?.role == "ADMIN") {
+            binding.appCompatButton.visibility = android.view.View.VISIBLE
+            binding.layoutHeader.title.text = "Manage Book"
+        }else{
+            binding.appCompatButton.visibility = android.view.View.GONE
+            binding.layoutHeader.title.text = "List Book"
+        }
         onItemBookClick = {
             val intent = Intent(this, BookDetailActivity::class.java)
             intent.putExtra("book", listBook[it])
@@ -40,7 +48,7 @@ class ListBookAcitvity : BaseActivity() {
         binding.layoutHeader.btnBack.setOnClickListener {
             onBackPressed()
         }
-        binding.layoutHeader.title.text = "Manage Book"
+
         binding.rvBook.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = bookAdapter

@@ -63,6 +63,7 @@ public class ScheduleCheck {
                 notification.setUserId(Long.valueOf(queueDetail.getUser().getId()));
                 notification.setContent("Bạn có lịch hẹn mượn sách " + queueBorrow.getBook().getTitle() + " vào hôm nay. Vui lòng đến thư viện để mượn sách.");
                 notification.setDate(today);
+
                 notification.setTitle("Thông báo");
                 notificationRepository.save(notification);
             }
